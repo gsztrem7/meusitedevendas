@@ -1,128 +1,47 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snoop Pods</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-        }
-        header {
-            background-color: #1a1a1a;
-            color: white;
-            text-align: center;
-            padding: 20px 10px;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
-        header p {
-            font-size: 1rem;
-            margin: 5px 0 0;
-        }
-        .promocao {
-            background-color: #ffcc00;
-            text-align: center;
-            padding: 20px;
-            margin: 20px 0;
-        }
-        .promocao h2 {
-            margin: 0;
-            font-size: 2rem;
-        }
-        .promocao p {
-            font-size: 1.2rem;
-        }
-        .cardapio {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-        .pod-card {
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            text-align: center;
-            padding: 15px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .pod-card img {
-            width: 100px;
-            height: auto;
-            margin-bottom: 10px;
-        }
-        .pod-card h2 {
-            font-size: 1.5rem;
-            margin: 10px 0;
-        }
-        .pod-card p {
-            color: #555;
-            margin: 5px 0;
-        }
-        .pod-card a {
-            text-decoration: none;
-            background-color: #28a745;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            display: inline-block;
-            margin-top: 10px;
-        }
-        footer {
-            background-color: #1a1a1a;
-            color: white;
-            text-align: center;
-            padding: 15px;
-        }
-        footer a {
-            color: #17a2b8;
-            text-decoration: none;
-        }
-    </style>
-</head>
-<body>
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { FaGamepad, FaPlay } from "react-icons/fa";
 
-<header>
-    <h1>Snoop Pods</h1>
-    <p>Os melhores pods pelos melhores preços!</p>
-</header>
+const games = [
+  { name: "Sweet Bonanza", image: "/sweet-bonanza.jpg" },
+  { name: "The Dog House", image: "/dog-house.jpg" },
+  { name: "Gates of Olympus", image: "/gates-olympus.jpg" },
+  { name: "Big Bass Bonanza", image: "/big-bass.jpg" },
+];
 
-<section class="promocao">
-    <h2>Promoção Especial: Leve 3, Pague 2!</h2>
-    <p>Compre 3 unidades de qualquer produto e pague apenas 2! Aproveite agora!</p>
-</section>
+export default function Casino() {
+  return (
+    <div className="min-h-screen bg-gray-900 text-white p-6">
+      <motion.h1
+        className="text-4xl font-bold text-center mb-6"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        🎰 Cassino Online - Jogos da Pragmatic Play 🎰
+      </motion.h1>
 
-<section class="cardapio">
-    <!-- Modelo 1 -->
-    <div class="pod-card">
-        <img src="https://via.placeholder.com/100" alt="Igniti V50">
-        <h2>Igniti V50</h2>
-        <p><s>R$ 55,00</s> <strong>R$ 36,67</strong></p>
-        <a href="https://wa.me/5511989932945?text=Quero+comprar+o+Igniti+V50!">Comprar pelo WhatsApp</a>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {games.map((game, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.2 }}
+          >
+            <Card className="bg-gray-800 p-4 rounded-2xl shadow-lg">
+              <img src={game.image} alt={game.name} className="w-full h-40 object-cover rounded-lg" />
+              <CardContent className="text-center mt-4">
+                <h2 className="text-xl font-bold">{game.name}</h2>
+                <Button className="mt-2 bg-yellow-500 hover:bg-yellow-600 w-full flex items-center justify-center">
+                  <FaPlay className="mr-2" /> Jogar
+                </Button>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
+      </div>
     </div>
-    <!-- Modelo 2 -->
-    <div class="pod-card">
-        <img src="https://via.placeholder.com/100" alt="Elf Bar 5000">
-        <h2>Elf Bar 5000</h2>
-        <p><s>R$ 65,00</s> <strong>R$ 43,33</strong></p>
-        <a href="https://wa.me/5511989932945?text=Quero+comprar+o+Elf+Bar+5000!">Comprar pelo WhatsApp</a>
-    </div>
-    <!-- Modelo 3 -->
-    <div class="pod-card">
-        <img src="https://via.placeholder.com/100" alt="Geek Bar S600">
-        <h2>Geek Bar S600</h2>
-        <p><s>R$ 70,00</s> <strong>R$ 46,67</strong></p>
-        <a href="https://wa.me/5511989932945?text=Quero+comprar+o+Geek+Bar+S600!">Comprar pelo WhatsApp</a>
-    </div>
-    <!-- Adicione mais modelos aqui -->
-</section>
-
-<footer>
-    <p>Chame a gente no WhatsApp: <a href="https://wa.me/5511989932945">+55 11 98993-2945</a></p>
-    <p>Siga nosso Instagram: <a href="https://instagram.com/snoop._pods">@snoop._pods</a39
+  );
+}
